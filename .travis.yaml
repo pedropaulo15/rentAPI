@@ -1,0 +1,28 @@
+language: node_js
+
+sudo: false # opt-in to new travis infrastructure
+
+node_js:
+  - node # uses the latest version in case is not set
+
+services:
+  - pg
+
+cache:
+  directories:
+    - "node_modules"
+
+install:
+  - bin/yarn install --offline
+
+matrix:
+  include:
+    - name: "Tests"
+      script: adonis test
+
+branches:
+  only:
+    - master
+
+notifications:
+  email: false
