@@ -23,7 +23,7 @@ after(async () => {
 test('updates a new user', async ({ client, assert }) => {
   assert.plan(2);
 
-  const response = await client.post(`/users/${123}`)
+  const response = await client.put(`/users/${123}`)
     .send({
       username: 'userHasBeenUpdated',
       email: 'userhasbeenupdated@user.com',
