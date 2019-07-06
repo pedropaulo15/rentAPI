@@ -10,6 +10,12 @@ class UserController {
     return user;
   }
 
+  async display({ params }) {
+    const user = await User.findOrFail(params.id);
+
+    return user;
+  }
+
   async update({ params, request }) {
     const user = await User.findOrFail(params.id);
     const data = request.only([
