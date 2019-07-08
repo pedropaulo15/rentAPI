@@ -194,7 +194,7 @@ acorn@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
 
-adonis-swagger@^1.2.9:
+adonis-swagger@1.2.9:
   version "1.2.9"
   resolved "https://registry.yarnpkg.com/adonis-swagger/-/adonis-swagger-1.2.9.tgz#5d62b63c7a07c71b3d9897b4d9546959e82692f0"
   dependencies:
@@ -824,7 +824,7 @@ combined-stream@^1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@^2.16.0, commander@^2.18.0:
+commander@^2.11.0, commander@^2.16.0, commander@^2.18.0, commander@^2.7.1:
   version "2.20.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
 
