@@ -2,39 +2,37 @@
 
 const { test, trait, before, after } = use('Test/Suite')('UserController');
 const User = use('App/Models/User');
+const faker = require("faker");
 
 trait('Test/ApiClient');
 trait('DatabaseTransactions');
 
-before(async () => {
+test('creates a new user', async ({ client, assert }) => {
+  const uuid = faker.random.uuid();
+  const userName = faker.internet.userName();
+  const email = faker.internet.email();
+
   await User.create({
-    id: 123,
-    username: 'CreateUser',
-    email: 'createuser@user.com',
+    id: uuid,
+    username: userName,
+    email: email,
     password: '123456'
   });
-});
 
-after(async () => {
-  const user = await User.findOrFail(123);
-  await user.delete();
-});
-
-test('creates a new user', async ({ client, assert }) => {
   assert.plan(3);
 
-  const deleteResponse = await client.delete(`/users/${123}`)
+  const deleteResponse = await client.delete(`/user/${uuid}`)
     .header('accept', 'application/json')
     .end();
 
   deleteResponse.assertStatus(200);
   deleteResponse.assertJSONSubset({
-    id: 123,
-    username: 'CreateUser',
-    email: 'createuser@user.com'
+    id: uuid,
+    username: userName,
+    email: email
   });
 
-  const getResponse = await client.get(`/users/${123}`)
+  const getResponse = await client.get(`/user/${uuid}`)
     .header('accept', 'application/json')
     .end();
   getResponse.assertStatus(404);
