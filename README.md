@@ -16,7 +16,7 @@ Use the adonis command to install the blueprint
 adonis new yardstick --api-only
 ```
 
-or manually clone the repo and then run `npm install`.
+or manually clone the repo and then run `yarn`.
 
 
 ### Migrations
@@ -26,3 +26,13 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
+Don't forget to update file .env with the parameters of your database.
+
+### Documentation
+
+Run the following command:
+
+```js
+adonis migration:run
+```
+after your application is running, go to browser open: docs(http://localhost:3333/docs/)
