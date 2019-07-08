@@ -3,13 +3,25 @@
 const { test, trait } = use("Test/Suite")("Auth");
 const User = use("App/Models/User");
 const Hash = use("Hash");
+const faker = require("faker");
 
 trait("Test/ApiClient");
 trait("Auth/Client");
+trait('DatabaseTransactions');
 
 test("creates a session", async ({ client }) => {
-  // Id and password needed to be changed until we work with the same db;
-  const user = await User.find("970609af-e1d7-49c7-b7b8-181931a07007");
+  const random_uuid = faker.random.uuid();
+  const random_userName = faker.internet.userName();
+  const random_email = faker.internet.email();
+
+  await User.create({
+    id: random_uuid,
+    username: random_userName,
+    email: random_email,
+    password: '123456'
+  });
+
+  const user = await User.find(random_uuid);
 
   const response = await client
     .post("auth")
