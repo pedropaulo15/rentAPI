@@ -35,4 +35,4 @@ Run the following command:
 ```js
 adonis migration:run
 ```
-after your application is running, go to browser open: docs(http://localhost:3333/docs/)
+after your application is running, go to browser open: http://localhost:3333/docs/
