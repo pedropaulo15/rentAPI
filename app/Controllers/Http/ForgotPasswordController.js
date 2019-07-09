@@ -1,4 +1,6 @@
 "use strict";
+
+const moment = require("moment");
 const crypto = require("crypto");
 const User = use("App/Models/User");
 const Mail = use("Mail");
@@ -38,6 +40,35 @@ class ForgotPasswordController {
         .send({ error: "Error, User does not exist." });
     }
   }
-}
 
+  async update({ request, response }) {
+    try {
+      // get token and the new password
+      const { token, password } = request.all();
+
+      // Find user based on token
+      const user = await User.findByOrFail("token", token);
+
+      // Check expired token (based in 2 days)
+      const tokenExpired = moment()
+        .subtract("2", "days")
+        .isAfter(user.toke_created_at);
+
+      if (tokenExpired) {
+        return response.status(401).send({ error: "Error, Token Expired." });
+      }
+
+      // Reset values
+      user.token = null;
+      user.token_created_at = null;
+      user.password = password;
+
+      await user.save();
+    } catch (err) {
+      return response
+        .status(err.status)
+        .send({ error: "Error, Error during the reset password." });
+    }
+  }
+}
 module.exports = ForgotPasswordController;
