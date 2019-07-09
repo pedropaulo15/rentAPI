@@ -17,12 +17,20 @@ class ForgotPasswordController {
       await user.save();
 
       // Send email to user
-      await Mail.send([""], {}, message => {
-        message
-          .to(user.email)
-          .from("rent@support.io", "Support | Rent")
-          .subject("Reset Password");
-      });
+      await Mail.send(
+        ["emails.forgot_password"],
+        {
+          email,
+          token: user.token,
+          link: `${request.input("redirect_url")}?token=${user.token}`
+        },
+        message => {
+          message
+            .to(user.email)
+            .from("rent@support.io", "Support | Rent")
+            .subject("Reset Password");
+        }
+      );
     } catch (err) {
       // Retrieve a error obj if email does not exist on db
       return response
