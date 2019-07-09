@@ -43,7 +43,7 @@ class UserController {
    *         description: Username or email already taken
    */
   async create({ request }) {
-    const data = request.only(["username", "email", "password"]);
+    const data = request.only(["name", "surname", "email", "password"]);
     const user = await User.create(data);
 
     return user;

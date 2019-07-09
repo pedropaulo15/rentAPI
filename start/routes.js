@@ -8,3 +8,5 @@ Route.put("/user/:id", "UserController.update");
 Route.delete("/user/:id", "UserController.destroy");
 
 Route.post("/auth", "AuthController.create");
+
+Route.post("/forgotpassword", "ForgotPasswordController.store");
