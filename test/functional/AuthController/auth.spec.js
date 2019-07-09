@@ -10,18 +10,18 @@ trait("Auth/Client");
 trait("DatabaseTransactions");
 
 test("authorization", async ({ client }) => {
-  const random_uuid = faker.random.uuid();
-  const random_userName = faker.internet.userName();
-  const random_email = faker.internet.email();
+  const uuid = faker.random.uuid();
+  const email = faker.internet.email();
 
   await User.create({
-    id: random_uuid,
-    username: random_userName,
-    email: random_email,
+    id: uuid,
+    name: faker.name.firstName(),
+    surname: faker.name.lastName(),
+    email: email,
     password: "123456"
   });
 
-  const user = await User.find(random_uuid);
+  const user = await User.find(uuid);
 
   const response = await client
     .post("auth")
