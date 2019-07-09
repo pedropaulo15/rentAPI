@@ -7,9 +7,9 @@ const faker = require("faker");
 
 trait("Test/ApiClient");
 trait("Auth/Client");
-trait('DatabaseTransactions');
+trait("DatabaseTransactions");
 
-test("creates a session", async ({ client }) => {
+test("authorization", async ({ client }) => {
   const random_uuid = faker.random.uuid();
   const random_userName = faker.internet.userName();
   const random_email = faker.internet.email();
@@ -18,7 +18,7 @@ test("creates a session", async ({ client }) => {
     id: random_uuid,
     username: random_userName,
     email: random_email,
-    password: '123456'
+    password: "123456"
   });
 
   const user = await User.find(random_uuid);

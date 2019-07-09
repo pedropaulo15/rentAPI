@@ -7,4 +7,4 @@ Route.get("/user/:id", "UserController.display");
 Route.put("/user/:id", "UserController.update");
 Route.delete("/user/:id", "UserController.destroy");
 
-Route.post("/auth", "authController.create");
+Route.post("/auth", "AuthController.create");
