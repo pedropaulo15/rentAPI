@@ -5,7 +5,7 @@ const User = use("App/Models/User");
 class UserController {
   /**
    * @swagger
-   * /users:
+   * /user:
    *   post:
    *     tags:
    *       - User
@@ -51,7 +51,7 @@ class UserController {
 
   /**
    * @swagger
-   * /users/{id}:
+   * /user/{id}:
    *   get:
    *     tags:
    *       - Users
@@ -89,7 +89,7 @@ class UserController {
 
   /**
    * @swagger
-   * /users:
+   * /user:
    *   put:
    *     tags:
    *       - Users
@@ -136,7 +136,7 @@ class UserController {
 
   /**
    * @swagger
-   * /users:
+   * /user:
    *   delete:
    *     tags:
    *       - Users
