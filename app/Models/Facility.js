@@ -31,3 +31,5 @@ const Model = use("Model");
 class Facility extends Model {}
 
 module.exports = Facility;
+
+// test
