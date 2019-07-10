@@ -1,13 +1,13 @@
 "use strict";
 
-const { test, trait } = use("Test/Suite")("Auth");
+const { test, trait, before, after } = use("Test/Suite")("Create User");
 const User = use("App/Models/User");
 const faker = require("faker");
 
 trait("Test/ApiClient");
 trait("DatabaseTransactions");
 
-test("authorization", async ({ client }) => {
+test("creates a new user", async ({ client, assert }) => {
   const uuid = faker.random.uuid();
   const email = faker.internet.email();
 
@@ -19,17 +19,16 @@ test("authorization", async ({ client }) => {
     password: "123456"
   });
 
-  const user = await User.find(uuid);
+  assert.plan(2);
 
   const response = await client
-    .post("auth")
-    .send({
-      email: user.email,
-      password: "123456"
-    })
+    .get(`/user/${uuid}`)
+    .header("accept", "application/json")
     .end();
 
   response.assertStatus(200);
+  response.assertJSONSubset({
+    id: uuid,
+    email: email
+  });
 });
-
-//TODO: Should return JWT token on test
