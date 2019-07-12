@@ -2,8 +2,8 @@
 
 /**
  * @swagger
- * PropertyType:
- *   Facility:
+ * definitions:
+ *   PropertyType:
  *     type: object
  *     properties:
  *       id:
