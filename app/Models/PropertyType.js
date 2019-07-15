@@ -1,9 +1,20 @@
-'use strict'
+"use strict";
+
+/**
+ * @swagger
+ * definitions:
+ *   PropertyType:
+ *     type: object
+ *     properties:
+ *       id:
+ *         type: uuid
+ *       name:
+ *         type: string
+ */
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Model = use('Model')
+const Model = use("Model");
 
-class PropertyType extends Model {
-}
+class PropertyType extends Model {}
 
-module.exports = PropertyType
+module.exports = PropertyType;

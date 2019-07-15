@@ -17,10 +17,8 @@ class UserSchema extends Schema {
         .unique()
         .defaultTo(this.db.raw("uuid_generate_v4()"))
         .primary();
-      table
-        .string("username", 80)
-        .notNullable()
-        .unique();
+      table.string("name", 80).notNullable();
+      table.string("surname", 80).notNullable();
       table
         .string("email", 254)
         .notNullable()
@@ -31,8 +29,6 @@ class UserSchema extends Schema {
   }
 
   async down() {
-    await this.db.raw('DROP EXTENSION IF EXISTS "uuid-ossp"');
-
     this.drop("users");
   }
 }
