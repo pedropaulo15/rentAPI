@@ -6,10 +6,10 @@ node_js:
   - node
 
 services:
-  - postgresql
+  - sqlite3
 
-before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+# before_script:
+#   - psql -c 'create database travis_ci_test;' -U postgres
 
 before_script:
   - adonis migration:run
